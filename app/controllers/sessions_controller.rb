@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if sign_in(user, params[:session][:password])
       flash[:success] = "Hello, #{current_user.name}!"
       url = session.delete(:pre_signin_url)
-      redirect_to url || root_url
+      redirect_to url || candidates_path
     else
       flash.now[:error] = 'Wrong password or email'
       render 'new'

@@ -1,0 +1,20 @@
+<div class="row"><strong><%= @candidate.alias %></strong></div>
+
+<div class="row">Recruiter: <%= @candidate.recruiter.name %></div>
+<div class="row">Owner: <%= @candidate.owner.name %></div>
+<div class="row">Résumé: <%= link_to @candidate.resume_url, @candidate.resume_url %></div>
+<div class="row">Contact: <%= @candidate.phone %> <%= mail_to @candidate.email, "Email" %></div>
+  
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@candidate) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :intro, "details" %>
+      <%= f.text_area :intro %>
+
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
