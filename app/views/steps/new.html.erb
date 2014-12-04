@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@step) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.hidden_field :candidate_id, value: @step.candidate.id %>
+
+      <%= f.label :owner %>
+      <%= f.select :owner_id,
+        options_from_collection_for_select(User.all, :id, :name),
+        prompt: "Throat to choke?" %>
+
+      <%= f.submit "Transition to next step", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

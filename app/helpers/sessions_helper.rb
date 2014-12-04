@@ -42,6 +42,7 @@ module SessionsHelper
 
   def check_authorization
     if params.include?(:id) && params[:id].to_i != current_user.id
+      raise
       redirect_to root_url, notice: "You don't have the rights to do that."
     end
   end

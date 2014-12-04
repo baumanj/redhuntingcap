@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204182144) do
+ActiveRecord::Schema.define(version: 20141204223329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,25 +22,23 @@ ActiveRecord::Schema.define(version: 20141204182144) do
     t.string   "phone",        null: false
     t.string   "resume_url",   null: false
     t.integer  "recruiter_id", null: false
-    t.integer  "owner_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "candidates", ["email"], name: "index_candidates_on_email", unique: true, using: :btree
   add_index "candidates", ["name"], name: "index_candidates_on_name", unique: true, using: :btree
-  add_index "candidates", ["owner_id"], name: "index_candidates_on_owner_id", using: :btree
   add_index "candidates", ["phone"], name: "index_candidates_on_phone", unique: true, using: :btree
   add_index "candidates", ["recruiter_id"], name: "index_candidates_on_recruiter_id", using: :btree
   add_index "candidates", ["resume_url"], name: "index_candidates_on_resume_url", unique: true, using: :btree
 
   create_table "steps", force: true do |t|
-    t.integer  "number",       null: false
-    t.text     "description"
+    t.text     "notes"
     t.integer  "candidate_id", null: false
     t.integer  "owner_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description",  null: false
   end
 
   add_index "steps", ["candidate_id"], name: "index_steps_on_candidate_id", using: :btree

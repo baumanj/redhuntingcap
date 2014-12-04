@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   before_save do
     self.email.downcase!
   end
+  
+  def to_s
+    name
+  end
 
   def User.new_secure_token
     SecureRandom.urlsafe_base64

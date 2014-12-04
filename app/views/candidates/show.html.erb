@@ -4,17 +4,39 @@
 <div class="row">Owner: <%= @candidate.owner.name %></div>
 <div class="row">Résumé: <%= link_to @candidate.resume_url, @candidate.resume_url %></div>
 <div class="row">Contact: <%= @candidate.phone %> <%= mail_to @candidate.email, "Email" %></div>
-  
+
+<% if @candidate.owner == current_user %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@candidate) do |f| %>
+    <%= form_for(@step) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :intro, "details" %>
-      <%= f.text_area :intro %>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :notes %>
+      <%= f.text_area :notes %>
 
       <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Send to next step", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
+<% else %>
+  <div class="row">Next step status: <%= @step.description %></div>
+<% end %>
 
+<div class="row">History:</div>
+
+<ol>
+  <% @history.each do |step| %>
+      <li>
+        Started: <%= time_ago_in_words(step.created_at) %> ago,
+        completed: <%= distance_of_time_in_words(step.next.created_at - step.created_at) %> later
+        <ul>
+          <li><%= step.description %></li>
+          <li><%= step.notes %></ll>
+        </ul>
+      </li>
+  <% end %>
+</ol>

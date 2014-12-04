@@ -2,5 +2,6 @@
   <%= link_to candidate.name, candidate %>
   <%= mail_to candidate.email %>
   <%= candidate.phone %>
-  Next step
+  Next step: <%= candidate.next_step %>
+  Owner: <%= candidate.owner.name %>
 </li>

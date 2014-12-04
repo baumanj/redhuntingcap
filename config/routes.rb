@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :candidates
+  resources :steps, except: [:new]
+  get '/steps/:candidate_id/new', to: 'steps#new', as: :new_step
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'

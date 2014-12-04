@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:session][:email].downcase)
-    if sign_in(user, params[:session][:password])
+    if user && sign_in(user, params[:session][:password])
       flash[:success] = "Hello, #{current_user.name}!"
       url = session.delete(:pre_signin_url)
       redirect_to url || candidates_path
