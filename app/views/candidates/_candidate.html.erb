@@ -4,4 +4,5 @@
   <%= candidate.phone %>
   Next step: <%= candidate.next_step %>
   Owner: <%= candidate.owner.name %>
+  Last updated: <%= time_ago_in_words(candidate.next_step.updated_at) %> ago
 </li>

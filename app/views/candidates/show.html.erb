@@ -23,7 +23,9 @@
   </div>
 </div>
 <% else %>
-  <div class="row">Next step status: <%= @step.description %></div>
+  <div class="row">Next step: <%= @step.description %></div>
+  <div class="row">Status: <%= @step.notes %></div>
+  <div class="row">Last updated: <%= time_ago_in_words(@step.updated_at) %> ago</div>
 <% end %>
 
 <div class="row">History:</div>
