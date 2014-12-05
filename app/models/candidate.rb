@@ -3,11 +3,22 @@ class Candidate < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   has_many :steps
 
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@([a-z\d\-]+\.)+[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+    uniqueness: { case_sensitive: false }
+  validates :phone, presence: true, uniqueness: { case_sensitive: false }
+  validates :resume_url, presence: true, uniqueness: { case_sensitive: false }
+
   def alias
     # recruiter.name.split(" ").each {|n| n.first}.join + id.to_s
     name
   end
   
+  def to_s
+    self.alias
+  end
+    
   def next_step
     Step.where(candidate: self).last
   end

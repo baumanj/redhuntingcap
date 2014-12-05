@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204223329) do
+ActiveRecord::Schema.define(version: 20141205000556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "candidates", force: true do |t|
-    t.string   "name",         null: false
-    t.string   "email",        null: false
-    t.string   "phone",        null: false
-    t.string   "resume_url",   null: false
-    t.integer  "recruiter_id", null: false
+    t.string   "name",                         null: false
+    t.string   "email",                        null: false
+    t.string   "phone",                        null: false
+    t.string   "resume_url",                   null: false
+    t.integer  "recruiter_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "inactive",     default: false, null: false
   end
 
   add_index "candidates", ["email"], name: "index_candidates_on_email", unique: true, using: :btree

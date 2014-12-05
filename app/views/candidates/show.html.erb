@@ -1,9 +1,11 @@
-<div class="row"><strong><%= @candidate.alias %></strong></div>
-
-<div class="row">Recruiter: <%= @candidate.recruiter.name %></div>
-<div class="row">Owner: <%= @candidate.owner.name %></div>
-<div class="row">Résumé: <%= link_to @candidate.resume_url, @candidate.resume_url %></div>
-<div class="row">Contact: <%= @candidate.phone %> <%= mail_to @candidate.email, "Email" %></div>
+<div class="jumbotron">
+  <div class="row"><strong><%= @candidate.alias %></strong></div>
+  <div class="row">Recruiter: <%= @candidate.recruiter.name %></div>
+  <div class="row">Owner: <%= @candidate.owner.name %></div>
+  <div class="row">Résumé: <%= link_to @candidate.resume_url, @candidate.resume_url %></div>
+  <div class="row">Contact: <%= @candidate.phone %> <%= mail_to @candidate.email, "Email" %></div>
+  <%= link_to "Edit Details", edit_candidate_path(@candidate) %>
+</div>
 
 <% if @candidate.owner == current_user %>
 <div class="row">
