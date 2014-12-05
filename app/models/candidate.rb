@@ -19,4 +19,14 @@ class Candidate < ActiveRecord::Base
   def owner=(user)
     next_step.update_attribute(:owner, user)
   end
+  
+  def urgency
+    if steps.last.updated_at > 30.minutes.ago
+      "normal"
+    elsif steps.last.updated_at > 1.hour.ago
+      "medium"
+    else
+      "high"
+    end
+  end
 end

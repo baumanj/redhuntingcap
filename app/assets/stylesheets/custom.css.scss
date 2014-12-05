@@ -5,6 +5,17 @@
 
 $gray-medium-light: #eaeaea;
 
+/* Urgency levels */
+.normal {
+   background: lightgreen;
+}
+.medium {
+   background: lightyellow;
+}
+.high {
+   background: pink;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
